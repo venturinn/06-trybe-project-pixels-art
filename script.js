@@ -26,4 +26,9 @@ for (let i = 0; i < 25; i += 1) {
     pixel.style.backgroundColor = 'white';
 
     pixelBoard.appendChild(pixel);
+
 }
+
+// Definindo a cor preta como sendo a cor inicial
+
+palheta[0].className = 'color select';
