@@ -2,13 +2,14 @@
 
 let palheta = document.getElementsByClassName('color');
 
-let cores = ['Black', 'pink', 'yellow', 'green']
+let cores = ['black', 'pink', 'yellow', 'green']
 
 for (let i = 0; i < palheta.length; i += 1) {
 
     palheta[i].style.backgroundColor = cores[i]
 
 }
+
 
 // Adicionando 25 pixels ao elemento id pixel-board
 
@@ -31,7 +32,7 @@ for (let i = 0; i < 25; i += 1) {
 
 // Definindo a cor preta como sendo a cor inicial
 
-palheta[0].className = 'color select';
+palheta[0].className = 'selected color';
 
 // Aplicando a seleção das cores da palheta conforme o click
 // Lembrando: a variável palheta possui o array com as 4 opções de cor
@@ -45,22 +46,22 @@ function selectReset() {
 
 function select01(event) {
     selectReset()
-    palheta[0].className = 'color select';
+    palheta[0].className = 'color selected';
 }
 
 function select02(event) {
     selectReset()
-    palheta[1].className = 'color select';
+    palheta[1].className = 'color selected';
 }
 
 function select03(event) {
     selectReset()
-    palheta[2].className = 'color select';
+    palheta[2].className = 'color selected';
 }
 
 function select04(event) {
     selectReset()
-    palheta[3].className = 'color select';
+    palheta[3].className = 'color selected';
 }
 
 palheta[0].addEventListener('click', select01);
@@ -73,7 +74,7 @@ palheta[3].addEventListener('click', select04);
 
 function paint(event) {
 
-    let selectColor = document.querySelector('.select');
+    let selectColor = document.querySelector('.selected');
     let color = selectColor.style.backgroundColor;
 
     if (event.target.className === 'pixel') {
