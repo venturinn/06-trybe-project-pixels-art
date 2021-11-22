@@ -63,8 +63,22 @@ function select04(event) {
     palheta[3].className = 'color select';
 }
 
-
 palheta[0].addEventListener('click', select01);
 palheta[1].addEventListener('click', select02);
 palheta[2].addEventListener('click', select03);
 palheta[3].addEventListener('click', select04);
+
+
+// Pintando os pixels com a cor selecionada
+
+function paint(event) {
+
+    let selectColor = document.querySelector('.select');
+    let color = selectColor.style.backgroundColor;
+
+    if (event.target.className === 'pixel') {
+        event.target.style.backgroundColor = color;
+    }
+}
+
+document.addEventListener('click', paint);
