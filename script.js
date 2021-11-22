@@ -82,3 +82,19 @@ function paint(event) {
 }
 
 document.addEventListener('click', paint);
+
+// Limpando o quadro de Pixels:
+
+
+function clear() {
+
+    let allPixels = document.getElementsByClassName('pixel');
+
+    for (let i = 0; i < allPixels.length; i += 1) {
+
+        allPixels[i].style.backgroundColor = 'white';
+    }
+}
+
+let button = document.querySelector('#clear-board');
+button.addEventListener('click', clear);
