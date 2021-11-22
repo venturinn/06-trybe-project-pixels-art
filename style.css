@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+}
+
+#color-palette {
+    text-align: center;
+}
+
+.color {
+    display: inline-block;
+    border: 1px solid black;
+    height: 50px;
+    width: 50px;
+}
