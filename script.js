@@ -109,44 +109,65 @@ button.addEventListener('click', clear);
 const pixelBoard2 = document.getElementById('pixel-board');
 const pixels = document.getElementsByClassName('pixel');
 
-const enter = document.getElementById('board-size');
-enter.addEventListener('keypress', newBoard);
-
 function resetBoard() {
   for (; pixels.length > 0;) {
     pixelBoard2.removeChild(pixels[0]);
   }
 }
 
+const enter = document.getElementById('board-size');
+
+function newBoard2() {
+  if (enter.value <= 5) {
+    pixelNumer = 25;
+    pixelBoard2.style.height = '210px';
+    pixelBoard2.style.width = '210px';
+    resetBoard();
+    creatPixels();
+  } else if (enter.value > 50) {
+    pixelNumer = 2500;
+    pixelBoard2.style.height = '2100px';
+    pixelBoard2.style.width = '2100px';
+    resetBoard();
+    creatPixels();
+  }
+}
+
+function newBoard3() {
+  pixelNumer = enter.value * enter.value;
+  const lado = ((enter.value * 40) + (enter.value * 2));
+  const ladoString = String(lado);
+  pixelBoard2.style.height = `${ladoString}px`;
+  pixelBoard2.style.width = `${ladoString}px`;
+  resetBoard();
+  creatPixels();
+}
+
 function newBoard(event) {
-  if (event.key === 'Enter' || event.type === 'click') {
+  if (event.type === 'click') {
     if (enter.value === '') {
       alert('Board inválido!');
-    } else if (enter.value <= 5) {
-      pixelNumer = 25;
-      pixelBoard2.style.height = '210px';
-      pixelBoard2.style.width = '210px';
-      resetBoard();
-      creatPixels();
-    } else if (enter.value > 50) {
-      pixelNumer = 2500;
-      pixelBoard2.style.height = '2100px';
-      pixelBoard2.style.width = '2100px';
-      resetBoard();
-      creatPixels();
+    } else if (enter.value <= 5 || enter.value > 50) {
+      newBoard2();
     } else {
-      pixelNumer = enter.value * enter.value;
-      const lado = ((enter.value * 40) + (enter.value * 2));
-      const ladoString = String(lado);
-
-      pixelBoard2.style.height = `${ladoString}px`;
-      pixelBoard2.style.width = `${ladoString}px`;
-
-      resetBoard();
-      creatPixels();
+      newBoard3();
     }
   }
 }
+
+function newBoard4(event) {
+  if (event.key === 'Enter') {
+    if (enter.value === '') {
+      alert('Board inválido!');
+    } else if (enter.value <= 5 || enter.value > 50) {
+      newBoard2();
+    } else {
+      newBoard3();
+    }
+  }
+}
+
+enter.addEventListener('keypress', newBoard4);
 
 const newClick = document.getElementById('generate-board');
 newClick.addEventListener('click', newBoard);
