@@ -15,19 +15,25 @@ for (let i = 0; i < palheta.length; i += 1) {
 
 let pixelBoard = document.getElementById('pixel-board');
 
-for (let i = 0; i < 25; i += 1) {
+let pixelNumer = 25;
 
-    let pixel = document.createElement('div');
+creatPixels();
 
-    pixel.className = 'pixel';
-    pixel.style.height = '40px';
-    pixel.style.width = '40px';
-    pixel.style.border = '1px solid black';
-    pixel.style.display = 'inline-block';
-    pixel.style.backgroundColor = 'white';
+function creatPixels() {
 
-    pixelBoard.appendChild(pixel);
+    for (let i = 0; i < pixelNumer; i += 1) {
 
+        let pixel = document.createElement('div');
+
+        pixel.className = 'pixel';
+        pixel.style.height = '40px';
+        pixel.style.width = '40px';
+        pixel.style.border = '1px solid black';
+        pixel.style.display = 'inline-block';
+        pixel.style.backgroundColor = 'white';
+
+        pixelBoard.appendChild(pixel);
+    }
 }
 
 // Definindo a cor preta como sendo a cor inicial
@@ -99,3 +105,62 @@ function clear() {
 
 let button = document.querySelector('#clear-board');
 button.addEventListener('click', clear);
+
+// Gerando um quadro com tamanho escolhido pelo usuário 
+
+
+// Função para zerar os pixels
+
+let pixelBoard2 = document.getElementById('pixel-board')
+let pixels = document.getElementsByClassName('pixel')
+
+function resetBoard() {
+
+    for (; pixels.length > 0;) {
+        pixelBoard2.removeChild(pixels[0]);
+    }
+}
+
+function newBoard(event) {
+
+
+    if (event.key === 'Enter' || event.type === 'click') {
+
+        if (enter.value === '') {
+            alert('Board inválido!');
+        } else if (enter.value <= 5) {
+
+            pixelNumer = 25;
+            pixelBoard2.style.height = '210px';
+            pixelBoard2.style.width = '210px';
+            resetBoard();
+            creatPixels();
+
+        } else if (enter.value > 50) {
+
+            pixelNumer = 2500;
+            pixelBoard2.style.height = '2100px';
+            pixelBoard2.style.width = '2100px';
+            resetBoard();
+            creatPixels();
+
+        } else {
+
+            pixelNumer = enter.value * enter.value;
+            let lado = ((enter.value * 40) + (enter.value * 2));
+            let ladoString = String(lado);
+
+            pixelBoard2.style.height = ladoString + 'px';
+            pixelBoard2.style.width = ladoString + 'px';
+
+            resetBoard();
+            creatPixels();
+        }
+    }
+}
+
+let newClick = document.getElementById('generate-board');
+newClick.addEventListener('click', newBoard);
+
+let enter = document.getElementById('board-size');
+enter.addEventListener('keypress', newBoard);
