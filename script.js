@@ -1,12 +1,17 @@
-// Aplicando cores para a palheta de corres
+// Aplicando cores para a palheta de corres, sendo a primeira black e as outras aleatórias
+
 
 let palheta = document.getElementsByClassName('color');
 
-let cores = ['black', 'pink', 'yellow', 'green']
+
+let cores = ['black']
+
 
 for (let i = 0; i < palheta.length; i += 1) {
 
+    cores.push('rgb' + '(' + String(Math.random() * 255) + ',' + String(Math.random() * 255) + ',' + String(Math.random() * 255) + ')');
     palheta[i].style.backgroundColor = cores[i]
+    console.log(cores);
 
 }
 
