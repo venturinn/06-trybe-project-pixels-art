@@ -9,7 +9,7 @@ for (let i = 0; i < palheta.length; i += 1) {
   const g = String(Math.random() * 255);
   const b = String(Math.random() * 255);
 
-  cores.push(`${'rgb' + '('}${r},${g},${b})`);
+  cores.push(`${'rgb('}${r},${g},${b})`);
   palheta[i].style.backgroundColor = cores[i];
 }
 
@@ -83,7 +83,8 @@ function paint(event) {
   const color = selectColor.style.backgroundColor;
 
   if (event.target.className === 'pixel') {
-    event.target.style.backgroundColor = color;
+    const catEvent = event.target;
+    catEvent.style.backgroundColor = color;
   }
 }
 
@@ -143,31 +144,21 @@ function newBoard3() {
   creatPixels();
 }
 
-function newBoard(event) {
-  if (event.type === 'click') {
-    if (enter.value === '') {
-      alert('Board inválido!');
-    } else if (enter.value <= 5 || enter.value > 50) {
-      newBoard2();
-    } else {
-      newBoard3();
-    }
+function newBoard() {
+  if (enter.value === '') {
+    alert('Board inválido!');
+  } else if (enter.value <= 5 || enter.value > 50) {
+    newBoard2();
+  } else {
+    newBoard3();
   }
 }
 
-function newBoard4(event) {
+enter.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
-    if (enter.value === '') {
-      alert('Board inválido!');
-    } else if (enter.value <= 5 || enter.value > 50) {
-      newBoard2();
-    } else {
-      newBoard3();
-    }
+    newBoard();
   }
-}
-
-enter.addEventListener('keypress', newBoard4);
+}, false);
 
 const newClick = document.getElementById('generate-board');
 newClick.addEventListener('click', newBoard);
