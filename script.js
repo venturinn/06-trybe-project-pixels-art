@@ -11,7 +11,6 @@ for (let i = 0; i < palheta.length; i += 1) {
 
   cores.push(`${'rgb' + '('}${r},${g},${b})`);
   palheta[i].style.backgroundColor = cores[i];
-  console.log(cores);
 }
 
 // Adicionando 25 pixels ao elemento id pixel-board
@@ -50,24 +49,26 @@ function selectReset() {
   }
 }
 
+const classColor = 'color selected';
+
 function select01() {
   selectReset();
-  palheta[0].className = 'color selected';
+  palheta[0].className = classColor;
 }
 
 function select02() {
   selectReset();
-  palheta[1].className = 'color selected';
+  palheta[1].className = classColor;
 }
 
 function select03() {
   selectReset();
-  palheta[2].className = 'color selected';
+  palheta[2].className = classColor;
 }
 
 function select04() {
   selectReset();
-  palheta[3].className = 'color selected';
+  palheta[3].className = classColor;
 }
 
 palheta[0].addEventListener('click', select01);
@@ -108,6 +109,9 @@ button.addEventListener('click', clear);
 const pixelBoard2 = document.getElementById('pixel-board');
 const pixels = document.getElementsByClassName('pixel');
 
+const enter = document.getElementById('board-size');
+enter.addEventListener('keypress', newBoard);
+
 function resetBoard() {
   for (; pixels.length > 0;) {
     pixelBoard2.removeChild(pixels[0]);
@@ -146,6 +150,3 @@ function newBoard(event) {
 
 const newClick = document.getElementById('generate-board');
 newClick.addEventListener('click', newBoard);
-
-let enter = document.getElementById('board-size');
-enter.addEventListener('keypress', newBoard);
